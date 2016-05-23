@@ -70,12 +70,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!-- 
-							<tr>
-								<th colspan="7" class="text-center">등록된 선수 정보가 존재하지 않습니다.</th>
-							</tr>
-							 -->
-							  <c:if test="${allList ne null}">
+							<c:choose>
+							<c:when test="${allList ne null}">
+							
 							  <c:forEach items="${allList}" var="team" varStatus="num">
 							  <c:forEach items="${team.players}" var="list">
 								<c:set var="count" value="${count+1}" />
@@ -97,8 +94,8 @@
 							</tr>
 							</c:forEach>
 							</c:forEach>
-							</c:if>
-							<c:if test="${allList eq null}">
+							</c:when>
+							<c:when test="${allList eq null}">
 							<c:forEach items="${player}" var="players" varStatus="status">
 							<tr>
 							<td class="text-center">${status.count}</td>
@@ -116,7 +113,13 @@
 								<td class="text-center"><a href="${ctx}/tradeTargetList.do?id=${players.playerId}">트레이드</a></td>
 							</tr>
 							</c:forEach>
-							</c:if>
+							</c:when>
+							<c:otherwise>
+							<tr>
+								<th colspan="7" class="text-center">등록된 선수 정보가 존재하지 않습니다.</th>
+							</tr>
+							</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>

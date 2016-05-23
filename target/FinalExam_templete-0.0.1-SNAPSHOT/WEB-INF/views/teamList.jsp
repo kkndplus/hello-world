@@ -67,11 +67,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!-- 
-							<tr>
-								<th colspan="5" class="text-center">구단정보가 존재하지 않습니다.</th>
-							</tr>
-							 -->
+							 <c:choose>
+							 <c:when test="${list ne null}">
 							 <c:forEach items="${list}" var="team" varStatus="status">
 							<tr>
 								<td class="text-center">${status.count}</td>
@@ -81,6 +78,13 @@
 								<td>${team.stadium}</td>
 							</tr>
 							</c:forEach>
+							</c:when>
+							<c:otherwise>
+							<tr>
+								<th colspan="5" class="text-center">구단정보가 존재하지 않습니다.</th>
+							</tr>
+							</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>

@@ -72,12 +72,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!-- 
-							<tr>
-								<th colspan="6" class="text-center">등록된 선수 정보가 존재하지 않습니다.</th>
-							</tr>
-							 -->
-							 
+							 <c:choose>
+							 <c:when test="">
 							 <c:forEach items="${tradelist}" var="list" varStatus="num">
 							  <c:forEach items="${list.players}" var="players" varStatus="status">
 							
@@ -98,6 +94,13 @@
 							</tr>
 							</c:forEach>
 							</c:forEach>
+							</c:when>
+							<c:otherwise>
+							<tr>
+								<th colspan="6" class="text-center">등록된 선수 정보가 존재하지 않습니다.</th>
+							</tr>
+							</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>
